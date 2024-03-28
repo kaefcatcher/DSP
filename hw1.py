@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import sounddevice as sd
 
 # Задаем частоту дискретизации
-sampling_frequency = 10000  # 10 kHz
+sampling_frequency = 30000
 
 # Функция для генерации сигнала заданной частоты и длительности
 def generate_signal(frequency, duration):
@@ -36,7 +36,7 @@ digit = input("Введите цифру от 0 до 9: ")
 # Проверка наличия цифры в словаре и воспроизведение соответствующего сигнала
 if digit in tones:
     frequencies = tones[digit]
-    duration = 0.5  # секунды
+    duration = 0.005  # секунды
     signal = sum(generate_signal(f, duration) for f in frequencies)
     play_sound(signal)
 

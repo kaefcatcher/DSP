@@ -1,8 +1,8 @@
 import numpy as np
 import scipy.signal
 import matplotlib.pyplot as plt
-from math import exp
 from numpy.fft import ifft,fft
+
 def ex1():
     rect_pulse = np.repeat([0., 1., 0.], 100)
 
@@ -135,7 +135,12 @@ def ex3():
 
 
 def circle_convolution(signal1, signal2):
-    return np.real(ifft(fft(signal1) * fft(signal2)))
+    fft_signal1 = np.fft.fft(signal1)
+    fft_signal2 = np.fft.fft(signal2)
+    fft_result = fft_signal1 * fft_signal2
+    return np.real(np.fft.ifft(fft_result))
+    
+
 
 def ex4():
     plt.figure(figsize=(15, 10))
@@ -222,4 +227,8 @@ def ex5():
 
 
     print(f'Длина циклической свертки (посчитана руками): {len(circle_conv_two_signal_math)}',f'Длина циклической свертки (посчитана по теореме): {len(circle_conv_two_signal_fft)}',f'Количества совпадений выражения fft(f * g) = fft(f) * fft(g): {np.count_nonzero((fft(circle_conv_two_signal_math) - (fft(signal1) * fft(signal2))) < eps)}',sep='\n')
-ex5()
+# ex5()
+    
+ex1()
+ex2()
+ex3()
